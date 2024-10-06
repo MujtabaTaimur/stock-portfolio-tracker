@@ -1,5 +1,4 @@
 # database.py
-
 import sqlite3
 from portfolio import Portfolio
 
