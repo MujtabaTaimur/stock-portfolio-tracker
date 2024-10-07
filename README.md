@@ -11,5 +11,5 @@ A Python-based application for managing stock portfolios, buying/selling stocks,
 ### How to Run:
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/stock-portfolio-tracker.git
+   git clone https://github.com/MujtabaTaimur/stock-portfolio-tracker.git
    cd stock-portfolio-tracker
