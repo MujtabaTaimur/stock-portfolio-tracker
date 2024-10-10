@@ -13,3 +13,4 @@ A Python-based application for managing stock portfolios, buying/selling stocks,
    ```bash
    git clone https://github.com/MujtabaTaimur/stock-portfolio-tracker.git
    cd stock-portfolio-tracker
+
