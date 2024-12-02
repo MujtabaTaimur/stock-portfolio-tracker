@@ -52,7 +52,7 @@ def main():
             transaction = Transaction(stock_symbol, 'buy', quantity, price)
             portfolio_manager.process_transaction(portfolio_name, transaction)
             database.save_portfolio(portfolio_manager.get_portfolio(portfolio_name))
-
+#F2
         elif choice == '5':
             portfolio_name = input("Enter portfolio name: ")
             stock_symbol = input("Enter stock symbol: ")
