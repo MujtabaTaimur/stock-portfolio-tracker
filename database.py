@@ -15,9 +15,18 @@ class Portfolio:
         return f"<Portfolio name={self.name}, balance={self.balance}, holdings={self.holdings}>"
 
 
-def save_portfolio(portfolio):
-    conn = sqlite3.connect(DB_FILE)
-    cursor = conn.cursor()
+# Initialize database and table
+def init_database():
+    with sqlite3.connect(DB_FILE) as conn:
+        cursor = conn.cursor()
+        cursor.execute('''
+            CREATE TABLE IF NOT EXISTS portfolios (
+                name TEXT PRIMARY KEY,
+                balance REAL DEFAULT 0,
+                holdings TEXT DEFAULT '{}'
+            )
+        ''')
+
 
     # Save portfolio
     cursor.execute('INSERT OR REPLACE INTO portfolios (name) VALUES (?)', (portfolio.name,))
