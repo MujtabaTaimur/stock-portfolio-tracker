@@ -52,3 +52,14 @@ def load_portfolios():
             portfolio = Portfolio(name, balance, holdings)
             portfolios.append(portfolio)
     return portfolios
+
+
+# Example usage
+if __name__ == "__main__":
+    init_database()
+    # Create example portfolio
+    p = Portfolio("MyPortfolio", balance=10000.0, holdings={"AAPL": 10, "TSLA": 5})
+    save_portfolio(p)
+
+    all_portfolios = load_portfolios()
+    print(all_portfolios)
