@@ -4,19 +4,16 @@ from portfolio import Portfolio
 
 DB_FILE = 'portfolio.db'
 
-def init_database():
-    conn = sqlite3.connect(DB_FILE)
-    cursor = conn.cursor()
+# Simple Portfolio class
+class Portfolio:
+    def __init__(self, name, balance=0.0, holdings=None):
+        self.name = name
+        self.balance = balance
+        self.holdings = holdings if holdings is not None else {}
 
-    # Create tables if they don't exist
-    cursor.execute('''
-        CREATE TABLE IF NOT EXISTS portfolios (
-            name TEXT PRIMARY KEY
-        )
-    ''')
+    def __repr__(self):
+        return f"<Portfolio name={self.name}, balance={self.balance}, holdings={self.holdings}>"
 
-    conn.commit()
-    conn.close()
 
 def save_portfolio(portfolio):
     conn = sqlite3.connect(DB_FILE)
