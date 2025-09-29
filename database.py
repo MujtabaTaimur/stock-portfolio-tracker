@@ -40,3 +40,15 @@ def save_portfolio(portfolio):
             ''',
             (portfolio.name, portfolio.balance, holdings_json)
         )
+
+# Load all portfolios from database
+def load_portfolios():
+    portfolios = []
+    with sqlite3.connect(DB_FILE) as conn:
+        cursor = conn.cursor()
+        cursor.execute('SELECT name, balance, holdings FROM portfolios')
+        for name, balance, holdings_json in cursor.fetchall():
+            holdings = json.loads(holdings_json)  # Convert JSON string back to dict
+            portfolio = Portfolio(name, balance, holdings)
+            portfolios.append(portfolio)
+    return portfolios
