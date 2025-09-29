@@ -1,6 +1,6 @@
 # main.py
 
-from portfolio import PortfolioManager
+rom portfolio import PortfolioManager, Portfolio  # UPDATED: import Portfolio class # NEW
 from transaction import Transaction
 from report import ReportGenerator
 import database
