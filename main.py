@@ -21,7 +21,7 @@ def main():
 
     # Initialize portfolio manager and load portfolios from database
     portfolio_manager = PortfolioManager()
-    portfolio_manager.load_portfolios()
+
 
     report_generator = ReportGenerator(portfolio_manager)
 
@@ -34,8 +34,10 @@ def main():
 
         elif choice == '2':
             portfolio_name = input("Enter portfolio name: ")
-            portfolio_manager.add_portfolio(portfolio_name)
-            database.save_portfolio(portfolio_manager.get_portfolio(portfolio_name))
+            # Create Portfolio object with default balance and holdings # NEW
+            new_portfolio = Portfolio(portfolio_name, balance=0.0, holdings={})  # NEW
+            portfolio_manager.add_portfolio(new_portfolio)  # NEW
+            database.save_portfolio(new_portfolio)  # NEW
 
         elif choice == '3':
             portfolio_name = input("Enter portfolio name: ")
