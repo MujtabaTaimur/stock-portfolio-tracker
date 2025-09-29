@@ -28,24 +28,15 @@ def init_database():
         ''')
 
 
-    # Save portfolio
-    cursor.execute('INSERT OR REPLACE INTO portfolios (name) VALUES (?)', (portfolio.name,))
-    conn.commit()
-    conn.close()
-
-def load_portfolios():
-    conn = sqlite3.connect(DB_FILE)
-    cursor = conn.cursor()
-
-    cursor.execute('SELECT name FROM portfolios')
-    rows = cursor.fetchall()
-
-    portfolios = []
-    for row in rows:
-        portfolio_name = row[0]
-        portfolio = Portfolio(portfolio_name)
-        portfolios.append(portfolio)
-
-    conn.close()
-
-    return portfolios
+# Save or update a portfolio
+def save_portfolio(portfolio):
+    with sqlite3.connect(DB_FILE) as conn:
+        cursor = conn.cursor()
+        holdings_json = json.dumps(portfolio.holdings)  # Convert dict to JSON string
+        cursor.execute(
+            '''
+            INSERT OR REPLACE INTO portfolios (name, balance, holdings)
+            VALUES (?, ?, ?)
+            ''',
+            (portfolio.name, portfolio.balance, holdings_json)
+        )
